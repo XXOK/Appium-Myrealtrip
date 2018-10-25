@@ -17,10 +17,10 @@ PATH = lambda p: os.path.abspath(
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_SECRET_DIR = os.path.join(BASE_DIR, '.config')
-CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'account.json')
+CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'account1.json')
 
 
-class RegressionOne(unittest.TestCase):
+class Payment(unittest.TestCase):
     def elementReset(self):
         self.driver.press_keycode(187)
         sleep(1)
@@ -133,7 +133,6 @@ class RegressionOne(unittest.TestCase):
 
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/search_view'))).send_keys('osa')
         # 'osa' 입력
-
         sleep(3)
 
         region_osaka = wait.until(EC.visibility_of_element_located((By.XPATH,'/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]'))).text
@@ -265,7 +264,7 @@ class RegressionOne(unittest.TestCase):
 
         wait.until(EC.visibility_of_element_located((By.ID, 'reservation-btn'))).click()
         # 결제하기 버튼 탭
-        sleep(5)
+        sleep(10)
 
         self.elementReset()
 
