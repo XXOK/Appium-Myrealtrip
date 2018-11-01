@@ -33,15 +33,15 @@ class PaymentValidation(unittest.TestCase):
         desired_caps = {}
         desired_caps['appPackage'] = 'com.mrt.ducati'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '7.1.1'
-        desired_caps['deviceName'] = 'Nexus 5X'
-        desired_caps['udid'] = '10.100.101.16:5001'
+        desired_caps['platformVersion'] = '8.0.0'
+        desired_caps['deviceName'] = 'G5'
+        desired_caps['udid'] = '10.100.103.242:5003'
         desired_caps['app'] = PATH(
             '../apps/com.mrt.ducati_2018-09-18.apk'
         )
-        # 00c90f3bd27532b3
+        # LGMG600Kb3bcdb21
 
-        self.driver = webdriver.Remote('http://10.100.100.220:4722/wd/hub', desired_caps)
+        self.driver = webdriver.Remote('http://10.100.100.220:4724/wd/hub', desired_caps)
 
         if reset == False:
             desired_caps['fullReset'] = False
@@ -86,6 +86,42 @@ class PaymentValidation(unittest.TestCase):
 
         self.elementReset()
 
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.a.d[5]/android.view.ViewGroup/android.widget.ImageView'))).click()
+        # 네비게이션 바 프로필 버튼 탭
+
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_email'))).click()
+        # 이메일로 로그인 버튼 탭
+
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(email)
+        # 이메일 주소 입력
+
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.EditText'))).click()
+        # 비밀번호 텍스트 박스 탭
+
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(password)
+        # 비밀번호 입력
+
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_login'))).click()
+        # 로그인 버튼 탭
+
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.ImageButton'))).click()
+        # 휴대폰 인증하기 화면 X 버튼 탭(휴대폰 미인증 계정인 경우)
+
+        login_user_name = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_user_name'))).text
+        # 사용자 이름 변수 할당
+
+        login_user_email = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_email'))).text
+        # 사용자 이메일 변수 할당
+
+        if not login_user_name == name:
+            raise Exception('로그인된 사용자의 이름이 테스트계정과 상이하여 테스트를 종료합니다.', '노출되는 이름 :', login_user_name)
+
+        if not login_user_email == email:
+            raise Exception('로그인된 사용자의 이름이 테스트계정과 상이하여 테스트를 종료합니다.', '노출되는 이메일 :', login_user_email)
+
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.a.d[1]/android.view.ViewGroup'))).click()
+        # 네비게이션 바 홈 버튼 탭
+
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/searchbar'))).click()
         # 검색 버튼 탭
         sleep(3)
@@ -120,32 +156,6 @@ class PaymentValidation(unittest.TestCase):
 
         wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.view.ViewGroup[1]'))).click()
         # 상품 목록 > 첫번째 상품 탭
-
-        self.elementReset()
-
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_reservation'))).click()
-        # 비로그인 상태에서 구매하기 버튼 탭
-
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_email'))).click()
-        # 이메일로 로그인 버튼 탭
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.EditText'))).click()
-        # 이메일 텍스트 박스 탭
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(email)
-        # 이메일 주소 입력
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.EditText'))).click()
-        # 비밀번호 텍스트 박스 탭
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(password)
-        # 비밀번호 입력
-
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_login'))).click()
-        # 로그인 버튼 탭
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.ImageButton'))).click()
-        # 휴대폰 인증하기 화면 X 버튼 탭(휴대폰 미인증 계정인 경우)
 
         self.elementReset()
 
@@ -217,14 +227,6 @@ class PaymentValidation(unittest.TestCase):
         wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View[6]/android.view.View[1]/android.view.View[2]/android.view.View[2]/android.view.View[2]/android.view.View[4]/android.widget.EditText'))).send_keys(phone)
         # 여행자 연락처 입력
         sleep(1)
-
-        self.elementReset()
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View[6]/android.view.View[1]/android.view.View[2]/android.view.View[2]/android.view.View[3]/android.view.View[3]/android.widget.Spinner'))).click()
-        # 여행컨셉 > 연령대 셀렉트 박스 탭
-
-        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.CheckedTextView[3]'))).click()
-        # 20대 탭
 
         self.elementReset()
 
@@ -316,9 +318,9 @@ class PaymentValidation(unittest.TestCase):
         self.elementReset()
 
         landing_page = wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]'))).text
-        # 렌딩 페이지 > 예약내역 워딩 변수 할당
+        # 렌딩 페이지 > 나의 여행 워딩 변수 할당
 
-        if not landing_page == '예약내역':
+        if not landing_page == '나의 여행':
             raise Exception('결제 완료 후 랜딩 페이지가 나의 여행과 상이하여 테스트를 종료합니다.', '노출되는 렌딩 페이지 화면 :', landing_page)
 
         wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.LinearLayout'))).click()
