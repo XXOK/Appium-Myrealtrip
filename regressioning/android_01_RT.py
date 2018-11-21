@@ -108,7 +108,7 @@ class PaymentFacebook(unittest.TestCase):
         # # 계속 버튼 탭
         # sleep(3)
 
-        wait.until(EC.visibility_of_element_located((By.ID, 'u_0_3'))).click()
+        wait.until(EC.visibility_of_element_located((By.ID, 'u_0_9'))).click()
         sleep(1)
 
         login_user_name = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_user_name'))).text
