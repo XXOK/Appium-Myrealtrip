@@ -1,10 +1,10 @@
 {
 	"capabilities": [{
-		"deviceName": "Nexus 5X",
-		"version": "7.1.1",
-		"maxInstances": 3,
+		"deviceName": "G5",
+		"version": "6.0.1",
+		"maxInstances": 4,
 		"platform": "ANDROID",
-		"udid": "10.100.101.16:5001"
+		"udid": "LGF700L3d301c77"
 	}],
 	"configuration": {
 		"cleanUpCycle": 2000,

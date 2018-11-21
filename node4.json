@@ -1,10 +1,10 @@
 {
 	"capabilities": [{
-		"deviceName": "G6",
-		"version": "8.0.0",
-		"maxInstances": 3,
-		"platform": "ANDROID",
-		"udid": "10.100.103.242:5003"
+		"deviceName": "iPhone",
+		"version": "12.1",
+		"maxInstances": 4,
+		"platform": "iOS",
+		"udid": "A2E10077-6EBE-402F-80A6-2A72E56964E0"
 	}],
 	"configuration": {
 		"cleanUpCycle": 2000,

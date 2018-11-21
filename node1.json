@@ -1,10 +1,10 @@
 {
 	"capabilities": [{
-		"deviceName": "Galaxy S8",
-		"version": "8.0",
-		"maxInstances": 3,
+		"deviceName": "Nexus 5X",
+		"version": "7.1.1",
+		"maxInstances": 4,
 		"platform": "ANDROID",
-		"udid": "10.100.102.35:5000"
+		"udid": "00c90f3bd27532b3"
 	}],
 	"configuration": {
 		"cleanUpCycle": 2000,
