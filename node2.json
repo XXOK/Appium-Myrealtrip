@@ -1,10 +1,10 @@
 {
 	"capabilities": [{
-		"deviceName": "G5",
-		"version": "6.0.1",
+		"deviceName": "G6",
+		"version": "8.0.0",
 		"maxInstances": 4,
 		"platform": "ANDROID",
-		"udid": "LGF700L3d301c77"
+		"udid": "LGMG600Kb3bcdb21"
 	}],
 	"configuration": {
 		"cleanUpCycle": 2000,
