@@ -155,7 +155,7 @@ class PaymentValidation(unittest.TestCase):
             # 옵션 선택 첫번째 +1 탭
             wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View/android.view.View[1]/android.view.View[3]/android.widget.Button'))).click()
             sleep(1)
-        except TimeoutError:
+        except:
             print(item_title)
 
         self.driver.swipe(100, 1000, 100, 150)
