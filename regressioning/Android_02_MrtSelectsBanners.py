@@ -88,8 +88,14 @@ class MrtSelectsBanners(unittest.TestCase):
         # 페이스북으로 로그인 버튼 탭
         sleep(3)
 
-        wait.until(EC.visibility_of_element_located((By.ID, 'u_0_3'))).click()
-        sleep(1)
+        try:
+            facebook_login_text = wait.until(EC.visibility_of_element_located, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View/android.view.View/android.view.View[2]').text
+            if facebook_login_text == '회원님은 이전에 Facebook으로 myrealtrip 앱에 로그인하셨습니다. 계속 이 권한을 유지하시겠어요?':
+                wait.until(EC.visibility_of_element_located((By.ID, 'u_0_9'))).click()
+                sleep(1)
+        except:
+            wait.until(EC.visibility_of_element_located((By.ID, 'u_0_3'))).click()
+            sleep(1)
 
         login_user_name = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_user_name'))).text
         # 사용자 이름 변수 할당
