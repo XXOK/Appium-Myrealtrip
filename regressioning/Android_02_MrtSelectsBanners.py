@@ -42,7 +42,7 @@ class MrtSelectsBanners(unittest.TestCase):
             '../apps/app-production-release.apk'
         )
 
-        self.driver = webdriver.Remote('http://10.100.100.220:4721/wd/hub', desired_caps)
+        self.driver = webdriver.Remote('http://10.60.181.33:4722/wd/hub', desired_caps)
 
     def runTest(self):
 

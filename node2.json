@@ -1,25 +1,25 @@
 {
 	"capabilities": [{
-		"deviceName": "G6",
-		"version": "8.0.0",
+		"deviceName": "Nexus 5X",
+		"version": "7.1.1",
 		"maxInstances": 4,
 		"platform": "ANDROID",
-		"udid": "LGMG600Kb3bcdb21"
+		"udid": "00c90f3bd27532b3"
 	}],
 	"configuration": {
 		"cleanUpCycle": 2000,
 		"timeout": 30000,
 		"proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-		"url": "http://10.100.100.220:4722/wd/hub",
+		"url": "http://10.60.181.33:4722/wd/hub",
 		"host": "127.0.0.1",
-		"port": 4722,
+		"port": 4721,
 		"maxSession": 6,
 		"register": true,
 		"registerCycle": 5000,
-		"hub": "http://10.100.100.220:4444/grid/register/",
+		"hub": "http://10.60.181.33:4444/grid/register/",
 		"hubPort": 4444,
-		"hubHost": "10.100.100.220",
-		"remoteHost": "http://10.100.100.220:4722",
+		"hubHost": "10.60.181.33",
+		"remoteHost": "http://10.60.181.33:4722",
 		"role": "node"
 	}
 }
