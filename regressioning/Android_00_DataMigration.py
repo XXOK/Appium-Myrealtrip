@@ -58,6 +58,8 @@ class PaymentValidation(unittest.TestCase):
         password = config_secret['ACCOUNT']['PASSWORD']
         wording = config_secret['ACCOUNT']['WORDING']
 
+        sleep(5)
+
         # TODO - 튜토리얼 확인
 
         # 첫번째 튜토리얼 화면 다음 버튼 탭
@@ -267,7 +269,10 @@ class PaymentValidation(unittest.TestCase):
         sleep(1)
 
         # 여행정보가 최상단에 위치하도록 결제하기 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.Button'))).click()
+        # wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.Button'))).click()
+        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
+
+        sleep(3)
 
         # 여행컨셉 여행 목적 버튼 탭
         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Spinner')))[1].click()
@@ -289,7 +294,8 @@ class PaymentValidation(unittest.TestCase):
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.CheckBox'))).click()
 
         # 결제하기 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.Button'))).click()
+        # wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.Button'))).click()
+        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
 
         sleep(5)
 
