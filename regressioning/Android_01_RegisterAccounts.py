@@ -62,6 +62,8 @@ class PaymentValidation(unittest.TestCase):
         facebook_password = config_secret['ACCOUNT']['FACEBOOK_PASSWORD']
         naver_email = config_secret['ACCOUNT']['NAVER_EMAIL']
         naver_password = config_secret['ACCOUNT']['NAVER_PASSWORD']
+        login_email = config_secret['ACCOUNT']['LOGIN_EMAIL']
+        login_password = config_secret['ACCOUNT']['LOGIN_PASSWORD']
 
         sleep(5)
 
@@ -147,6 +149,8 @@ class PaymentValidation(unittest.TestCase):
         else:
             raise Exception('이메일 회원가입 실패', normal_name, normal_id)
 
+        # TODO - 이메일 로그아웃
+
         # 설정 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
@@ -160,6 +164,55 @@ class PaymentValidation(unittest.TestCase):
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_logout'))).click()
 
         sleep(1)
+
+        # TODO - 이메일 로그인
+
+        # 로그인 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
+
+        # 이메일로 로그인 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_email'))).click()
+
+        # 이메일 주소 입력
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(normal_email)
+
+        # 비밀번호 입력
+        wait.until(EC.visibility_of_element_located((By.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.EditText'))).send_keys(normal_password)
+
+        # 로그인 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_login'))).click()
+
+        sleep(1)
+
+        # 프로필 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati.staging'})
+
+        sleep(3)
+
+        if normal_name == name:
+            pass
+
+        else:
+            raise Exception('이메일 로그인 실패', normal_name, normal_id)
+
+        if normal_id == normal_email:
+
+            # 설정 버튼 탭
+            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
+
+            sleep(1)
+
+            self.driver.swipe(100, 1500, 100, 150)
+
+            sleep(1)
+
+            # 로그아웃 버튼 탭
+            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_logout'))).click()
+
+            sleep(1)
+
+        else:
+            raise Exception('이메일 로그인 실패', normal_name, normal_id)
 
         # TODO - 페이스북 회원가입
 
@@ -241,6 +294,8 @@ class PaymentValidation(unittest.TestCase):
         else:
             raise Exception('페이스북 회원가입 실패', facebook_name, facebook_id)
 
+        # TODO - 페이스북 로그아웃
+
         # 설정 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
@@ -254,6 +309,50 @@ class PaymentValidation(unittest.TestCase):
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_logout'))).click()
 
         sleep(1)
+
+        # TODO - 페이스북 로그인
+
+        # 로그인 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
+
+        # 페이스북으로 로그인 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_facebook'))).click()
+
+        sleep(2)
+
+        # 계속 버튼 탭
+        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[0].click()
+
+        sleep(2)
+
+        # 프로필 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati.staging'})
+
+        sleep(3)
+
+        if facebook_name == 'MRT Kang':
+            pass
+        else:
+            raise Exception('페이스북 회원가입 실패', facebook_name, facebook_id)
+
+        if facebook_id == facebook_email:
+
+            # 설정 버튼 탭
+            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
+
+            sleep(1)
+
+            self.driver.swipe(100, 1500, 100, 150)
+
+            sleep(1)
+
+            # 로그아웃 버튼 탭
+            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_logout'))).click()
+
+            sleep(1)
+
+        else:
+            raise Exception('페이스북 회원가입 실패', facebook_name, facebook_id)
 
         # TODO - 네이버 회원가입
 
@@ -372,6 +471,60 @@ class PaymentValidation(unittest.TestCase):
         else:
             raise Exception('네이버 회원가입 실패', naver_email, naver_id)
 
+        # TODO - 네이버 로그아웃
+
+        # 설정 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
+
+        sleep(1)
+
+        self.driver.swipe(100, 1500, 100, 150)
+
+        sleep(1)
+
+        # 로그아웃 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_logout'))).click()
+
+        sleep(1)
+
+        # TODO - 네이버 로그인
+
+        # 로그인 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
+
+        # 네이버로 로그인 버튼 탭
+        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_naver'))).click()
+
+        sleep(2)
+
+        # 네이버 로그인 동의 페이지에 위치 하는지 검증
+        foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]
+
+        self.driver.swipe(100, 1500, 100, 150)
+
+        sleep(1)
+
+        # 동의하기 버튼 탭
+        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
+
+        sleep(7)
+
+        # 프로필 페이지 진입
+        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati.staging'})
+
+        sleep(3)
+
+        if naver_name == name:
+            pass
+        else:
+            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+
+        if  naver_id == naver_email+'@naver.com':
+            pass
+        else:
+            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+
+        # 앱 제거
         self.driver.remove_app('com.mrt.ducati.staging')
 
     def tearDown(self):
