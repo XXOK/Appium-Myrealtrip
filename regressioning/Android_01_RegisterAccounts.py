@@ -154,7 +154,7 @@ class PaymentValidation(unittest.TestCase):
         # 설정 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
-        sleep(1)
+        sleep(2)
 
         self.driver.swipe(100, 1500, 100, 150)
 
@@ -170,6 +170,8 @@ class PaymentValidation(unittest.TestCase):
         # 로그인 페이지 진입
         self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
 
+        sleep(3)
+
         # 이메일로 로그인 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_email'))).click()
 
@@ -182,7 +184,7 @@ class PaymentValidation(unittest.TestCase):
         # 로그인 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_login'))).click()
 
-        sleep(1)
+        sleep(3)
 
         # 프로필 페이지 진입
         self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati.staging'})
@@ -200,7 +202,7 @@ class PaymentValidation(unittest.TestCase):
             # 설정 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
-            sleep(1)
+            sleep(2)
 
             self.driver.swipe(100, 1500, 100, 150)
 
@@ -244,7 +246,7 @@ class PaymentValidation(unittest.TestCase):
             # 전체 약관 동의 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
 
-            sleep(1)
+            sleep(2)
 
             self.driver.swipe(100, 1500, 100, 150)
 
@@ -262,7 +264,7 @@ class PaymentValidation(unittest.TestCase):
             # 전체 약관 동의 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
 
-            sleep(1)
+            sleep(2)
 
             self.driver.swipe(100, 1500, 100, 150)
 
@@ -299,7 +301,7 @@ class PaymentValidation(unittest.TestCase):
         # 설정 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
-        sleep(1)
+        sleep(2)
 
         self.driver.swipe(100, 1500, 100, 150)
 
@@ -314,6 +316,8 @@ class PaymentValidation(unittest.TestCase):
 
         # 로그인 페이지 진입
         self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
+
+        sleep(3)
 
         # 페이스북으로 로그인 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_facebook'))).click()
@@ -340,7 +344,7 @@ class PaymentValidation(unittest.TestCase):
             # 설정 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
-            sleep(1)
+            sleep(2)
 
             self.driver.swipe(100, 1500, 100, 150)
 
@@ -373,7 +377,7 @@ class PaymentValidation(unittest.TestCase):
             # 전체 약관 동의 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
 
-            sleep(1)
+            sleep(2)
 
             self.driver.swipe(100, 1500, 100, 150)
 
@@ -402,7 +406,7 @@ class PaymentValidation(unittest.TestCase):
                 # 전체 약관 동의 버튼 탭
                 wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
 
-                sleep(1)
+                sleep(2)
 
                 self.driver.swipe(100, 1500, 100, 150)
 
@@ -439,7 +443,7 @@ class PaymentValidation(unittest.TestCase):
                 # 전체 약관 동의 버튼 탭
                 wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
 
-                sleep(1)
+                sleep(2)
 
                 self.driver.swipe(100, 1500, 100, 150)
 
@@ -476,7 +480,7 @@ class PaymentValidation(unittest.TestCase):
         # 설정 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_setting'))).click()
 
-        sleep(1)
+        sleep(2)
 
         self.driver.swipe(100, 1500, 100, 150)
 
@@ -492,10 +496,12 @@ class PaymentValidation(unittest.TestCase):
         # 로그인 페이지 진입
         self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati.staging'})
 
+        sleep(3)
+
         # 네이버로 로그인 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/btn_naver'))).click()
 
-        sleep(2)
+        sleep(3)
 
         # 네이버 로그인 동의 페이지에 위치 하는지 검증
         foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]

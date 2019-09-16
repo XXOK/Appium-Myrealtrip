@@ -252,11 +252,15 @@ class PaymentValidation(unittest.TestCase):
 
         # 구매하기 버튼 탭
         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[3].click()
-        sleep(5)
-
-        # 예정 정보 불러오기 팝업 닫기
-        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[0].click()
         sleep(3)
+
+        try:
+            # 예약 정보 불러오기 팝업 닫기
+            wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[0].click()
+            sleep(3)
+
+        except:
+            pass
 
         # 구매하기 페이지의 최하단까지 스크롤
         self.driver.swipe(100, 1500, 100, 150)
