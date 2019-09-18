@@ -106,7 +106,7 @@ class PaymentValidation(unittest.TestCase):
 
         self.driver.swipe(100, 1500, 100, 150)
 
-        sleep(1)
+        sleep(3)
 
         # 전체 약관 동의 버튼 탭
         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati.staging:id/chk_terms_all'))).click()
