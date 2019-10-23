@@ -74,8 +74,6 @@ class PaymentValidation(unittest.TestCase):
 
         sleep(5)
 
-        pdb.set_trace()
-
         # TODO - 튜토리얼 확인
 
         # 첫번째 튜토리얼 화면 다음 버튼 탭
