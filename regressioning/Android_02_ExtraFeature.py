@@ -20,7 +20,7 @@ PATH = lambda p: os.path.abspath(
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_SECRET_DIR = os.path.join(BASE_DIR, '.config')
-CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'account_02.json')
+CONFIG_SETTINGS_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'staging_account.json')
 
 
 class PaymentValidation(unittest.TestCase):
