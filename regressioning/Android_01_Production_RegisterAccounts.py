@@ -282,7 +282,7 @@ class PaymentValidation(unittest.TestCase):
             # 회원가입 버튼 탭
             wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
 
-            sleep(7)
+            sleep(5)
 
         # TODO - 페이스북 회원가입 확인
 
@@ -367,169 +367,169 @@ class PaymentValidation(unittest.TestCase):
         else:
             raise Exception('페이스북 회원가입 실패', facebook_name, facebook_id)
 
-        # TODO - 네이버 회원가입
-
-        # 회원 가입 페이지 진입
-        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signup', 'package': 'com.mrt.ducati'})
-
-        sleep(3)
-
-        # 네이버로 회원가입 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup_naver'))).click()
-
-        sleep(3)
-
-        try:
-            # 이름 입력
-            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
-
-            # 전체 약관 동의 버튼 탭
-            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
-
-            sleep(2)
-
-            # 회원가입 버튼 탭
-            wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
-
-            sleep(5)
-
-        except:
-            try:
-                # 네이버 로그인 동의 페이지에 위치 하는지 검증
-                foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]
-
-                self.driver.swipe(100, 1500, 100, 150)
-
-                sleep(1)
-
-                # 동의하기 버튼 탭
-                wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
-
-                # 이름 입력
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
-
-                # 전체 약관 동의 버튼 탭
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
-
-                sleep(2)
-
-                self.driver.swipe(100, 1500, 100, 150)
-
-                sleep(1)
-
-                # 회원가입 버튼 탭
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
-
-                sleep(5)
-
-            except:
-                # 네이버 이메일 입력
-                wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.EditText')))[0].send_keys(naver_email)
-
-                # 네이버 비밀번호 입력
-                wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.EditText')))[1].send_keys(naver_password)
-
-                # 로그인 상태 유지 버튼 탭
-                wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.CheckBox'))).click()
-
-                # 로그인 버튼 탭
-                wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[2].click()
-
-                sleep(3)
-
-                self.driver.swipe(100, 1500, 100, 150)
-
-                # 동의하기 버튼 탭
-                wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
-
-                # 이름 입력
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
-
-                # 전체 약관 동의 버튼 탭
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
-
-                sleep(2)
-
-                self.driver.swipe(100, 1500, 100, 150)
-
-                sleep(1)
-
-                # 회원가입 버튼 탭
-                wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
-
-                sleep(5)
-
-        # TODO - 네이버 회원가입 확인
-
-        # 프로필 페이지 진입
-        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati'})
-
-        sleep(3)
-
-        # 이름/이메일 확인
-        naver_name = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_user_name'))).text
-        naver_id = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_email'))).text
-
-        if naver_name == name:
-            pass
-        else:
-            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
-
-        if  naver_id == naver_email+'@naver.com':
-            pass
-        else:
-            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
-
-        # TODO - 네이버 로그아웃
-
-        # 설정 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_setting'))).click()
-
-        sleep(2)
-
-        # 로그아웃 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_logout'))).click()
-
-        sleep(1)
-
-        # TODO - 네이버 로그인
-
-        # 로그인 페이지 진입
-        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati'})
-
-        sleep(2)
-
-        # 네이버로 로그인 버튼 탭
-        wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_naver'))).click()
-
-        sleep(2)
-
-        # 네이버 로그인 동의 페이지에 위치 하는지 검증
-        foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]
-
-        self.driver.swipe(100, 1500, 100, 150)
-
-        sleep(2)
-
-        # 동의하기 버튼 탭
-        wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
-
-        sleep(5)
-
-        # 프로필 페이지 진입
-        self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati'})
-
-        sleep(3)
-
-        if naver_name == name:
-            pass
-        else:
-            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
-
-        if  naver_id == naver_email+'@naver.com':
-            pass
-        else:
-            raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+        # # TODO - 네이버 회원가입
+        #
+        # # 회원 가입 페이지 진입
+        # self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signup', 'package': 'com.mrt.ducati'})
+        #
+        # sleep(3)
+        #
+        # # 네이버로 회원가입 버튼 탭
+        # wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup_naver'))).click()
+        #
+        # sleep(3)
+        #
+        # try:
+        #     # 이름 입력
+        #     wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
+        #
+        #     # 전체 약관 동의 버튼 탭
+        #     wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
+        #
+        #     sleep(2)
+        #
+        #     # 회원가입 버튼 탭
+        #     wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
+        #
+        #     sleep(5)
+        #
+        # except:
+        #     try:
+        #         # 네이버 로그인 동의 페이지에 위치 하는지 검증
+        #         foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]
+        #
+        #         self.driver.swipe(100, 1500, 100, 150)
+        #
+        #         sleep(1)
+        #
+        #         # 동의하기 버튼 탭
+        #         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
+        #
+        #         # 이름 입력
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
+        #
+        #         # 전체 약관 동의 버튼 탭
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
+        #
+        #         sleep(2)
+        #
+        #         self.driver.swipe(100, 1500, 100, 150)
+        #
+        #         sleep(1)
+        #
+        #         # 회원가입 버튼 탭
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
+        #
+        #         sleep(5)
+        #
+        #     except:
+        #         # 네이버 이메일 입력
+        #         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.EditText')))[0].send_keys(naver_email)
+        #
+        #         # 네이버 비밀번호 입력
+        #         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.EditText')))[1].send_keys(naver_password)
+        #
+        #         # 로그인 상태 유지 버튼 탭
+        #         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'android.widget.CheckBox'))).click()
+        #
+        #         # 로그인 버튼 탭
+        #         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[2].click()
+        #
+        #         sleep(3)
+        #
+        #         self.driver.swipe(100, 1500, 100, 150)
+        #
+        #         # 동의하기 버튼 탭
+        #         wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
+        #
+        #         # 이름 입력
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/input_name'))).send_keys(name)
+        #
+        #         # 전체 약관 동의 버튼 탭
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/chk_terms_all'))).click()
+        #
+        #         sleep(2)
+        #
+        #         self.driver.swipe(100, 1500, 100, 150)
+        #
+        #         sleep(1)
+        #
+        #         # 회원가입 버튼 탭
+        #         wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_signup'))).click()
+        #
+        #         sleep(5)
+        #
+        # # TODO - 네이버 회원가입 확인
+        #
+        # # 프로필 페이지 진입
+        # self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati'})
+        #
+        # sleep(3)
+        #
+        # # 이름/이메일 확인
+        # naver_name = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_user_name'))).text
+        # naver_id = wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/txt_email'))).text
+        #
+        # if naver_name == name:
+        #     pass
+        # else:
+        #     raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+        #
+        # if  naver_id == naver_email+'@naver.com':
+        #     pass
+        # else:
+        #     raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+        #
+        # # TODO - 네이버 로그아웃
+        #
+        # # 설정 버튼 탭
+        # wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_setting'))).click()
+        #
+        # sleep(2)
+        #
+        # # 로그아웃 버튼 탭
+        # wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_logout'))).click()
+        #
+        # sleep(1)
+        #
+        # # TODO - 네이버 로그인
+        #
+        # # 로그인 페이지 진입
+        # self.driver.execute_script('mobile: deepLink', {'url': 'mrt://signin', 'package': 'com.mrt.ducati'})
+        #
+        # sleep(2)
+        #
+        # # 네이버로 로그인 버튼 탭
+        # wait.until(EC.visibility_of_element_located((By.ID, 'com.mrt.ducati:id/btn_naver'))).click()
+        #
+        # sleep(2)
+        #
+        # # 네이버 로그인 동의 페이지에 위치 하는지 검증
+        # foo = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Image')))[1]
+        #
+        # self.driver.swipe(100, 1500, 100, 150)
+        #
+        # sleep(2)
+        #
+        # # 동의하기 버튼 탭
+        # wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'android.widget.Button')))[1].click()
+        #
+        # sleep(5)
+        #
+        # # 프로필 페이지 진입
+        # self.driver.execute_script('mobile: deepLink', {'url': 'mrt://user', 'package': 'com.mrt.ducati'})
+        #
+        # sleep(3)
+        #
+        # if naver_name == name:
+        #     pass
+        # else:
+        #     raise Exception('네이버 회원가입 실패', naver_email, naver_id)
+        #
+        # if  naver_id == naver_email+'@naver.com':
+        #     pass
+        # else:
+        #     raise Exception('네이버 회원가입 실패', naver_email, naver_id)
 
         # 앱 제거
         self.driver.remove_app('com.mrt.ducati')
